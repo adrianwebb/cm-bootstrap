@@ -1,0 +1,3 @@
+[submodule "lib/bash"]
+	path = lib/bash
+	url = https://github.com/coralnexus/bash-lib.git
