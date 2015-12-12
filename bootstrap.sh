@@ -54,7 +54,7 @@ fi
 
 STATUS=0
 SCRIPT_DIR="$(cd "$(dirname "$([ `readlink "$0"` ] && echo "`readlink "$0"`" || echo "$0")")"; pwd -P)"
-SHELL_LIB_DIR="$SCRIPT_DIR/lib/shell"
+SHELL_LIB_DIR="$SCRIPT_DIR/lib/bash"
 
 source "$SHELL_LIB_DIR/load.sh" || exit 1
 
