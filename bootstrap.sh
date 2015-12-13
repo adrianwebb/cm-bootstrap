@@ -83,6 +83,13 @@ fi
 BOOTSTRAP_SCRIPTS="$SCRIPT_DIR/os/$OS/*.sh"
 
 #---
+# Source library functions
+
+for file in "$SCRIPT_DIR"/lib/*.sh
+  do source $file
+done
+
+#---
 
 for SCRIPT in $BOOTSTRAP_SCRIPTS
 do
