@@ -56,7 +56,7 @@ STATUS=0
 SCRIPT_DIR="$(cd "$(dirname "$([ `readlink "$0"` ] && echo "`readlink "$0"`" || echo "$0")")"; pwd -P)"
 SHELL_LIB_DIR="$SCRIPT_DIR/lib/bash"
 
-source "$SHELL_LIB_DIR/load.sh" || exit 1
+source "$SHELL_LIB_DIR/load.sh" || exit 100
 
 #---
 
@@ -80,14 +80,19 @@ fi
 #-------------------------------------------------------------------------------
 # Utilities
 
-BOOTSTRAP_SCRIPTS="$SCRIPT_DIR/os/$OS/*.sh"
+BOOTSTRAP_SCRIPTS="$SCRIPT_DIR/os/$OS/tasks/*.sh"
 
 #---
 # Source library functions
 
 for file in "$SCRIPT_DIR"/lib/*.sh
-  do source $file
+  do source $file || exit 150
 done
+
+# Source configuration file
+
+CONFIG_SCRIPT="$SCRIPT_DIR/os/$OS/config.sh"
+source "$CONFIG_SCRIPT" || exit 200
 
 #---
 
