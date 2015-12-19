@@ -1,15 +1,17 @@
 #!/bin/bash
 #-------------------------------------------------------------------------------
 
+# Ensure CM configuration directory
+
+echo "*** Ensuring default CM configuration directory"
+mkdir -p /etc/cm
+
 # Uninstall the CM gem
 
 echo "*** Removing old versions of CM gem"
 su - -c "gem uninstall cm -x --force" root || exit 101
 
 # Install the CM gem
-
-echo "Testing: GE_CM_DEV = $GEM_CM_DEV"
-echo "Testing: GE_CM_DIRECTORY = $GEM_CM_DIRECTORY"
 
 if [ "$GEM_CM_DEV" ]
 then
