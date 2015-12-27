@@ -36,6 +36,9 @@ GIT_VERSION="${GIT_VERSION:-1:1.9.1-1ubuntu0.2}"
 GIT_USER="${GIT_USER:-''}"
 GIT_EMAIL="${GIT_EMAIL:-''}"
 
+# SVN configuration
+SVN_VERSION="${SVN_VERSION:-1.8.8-1ubuntu3.2}"
+
 #
 # Ruby configuration
 #
