@@ -65,8 +65,8 @@ done
 
 echo "*** Installing Ruby version $RVM_RUBY_VERSION -- this might take some time"
 
-su - -c "rvm install $RVM_RUBY_VERSION" root || exit 55
-su - -c "rvm use $RVM_RUBY_VERSION --default" root || exit 56
+bash -l -c "rvm install $RVM_RUBY_VERSION" || exit 55
+bash -l -c "rvm use $RVM_RUBY_VERSION --default" || exit 56
 
 if [ ! -e "/root/.gemrc" ]
 then
