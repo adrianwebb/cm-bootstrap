@@ -34,6 +34,8 @@ test_package libeditline-dev "$LIBEDITLINE_DEV_VERSION"
 test_package libedit-dev "$LIBEDIT_DEV_VERSION"
 
 test_package git "$GIT_VERSION"
+test_package subversion "$SVN_VERSION"
+
 test_package ruby-dev "$RUBY_DEV_VERSION"
 
 #
@@ -49,4 +51,5 @@ test_command openssl "$OPENSSL_CMD_VERSION" version
 test_command unzip "$UNZIP_CMD_VERSION"
 test_command curl "$CURL_CMD_VERSION"
 test_command git "$GIT_CMD_VERSION"
+test_command svn "$SVN_CMD_VERSION"
 test_command cm "$CM_CMD_VERSION"
