@@ -24,6 +24,10 @@ ntpdate -s time.nist.gov
 echo "*** Updating system timezone"
 ln -sf "/usr/share/zoneinfo/$SYSTEM_TIMEZONE" /etc/localtime
 
+# Test time information
+echo "*** Testing system configuration"
+test_timezone "$SYSTEM_TIMEZONE"
+
 # Set locale information
 echo "*** Generating US UTF-8 system locale"
 locale-gen "$SYSTEM_LOCALE"
@@ -46,23 +50,54 @@ apt-get update || exit 6
 
 # Install basic build packages.
 echo "*** Ensuring basic libraries and development utilities"
-apt-get -y install build-essential="$BUILD_ESSENTIAL_VERSION" \
-                   cmake="$CMAKE_VERSION" \
-                   rake="$RAKE_VERSION" \
-                   unzip="$UNZIP_VERSION" \
-                   curl="$CURL_VERSION" \
-                   zlibc="$ZLIBC_VERSION" \
-                   bison="$BISON_VERSION" \
-                   llvm="$LLVM_VERSION" \
-                   llvm-dev="$LLVM_DEV_VERSION" \
-                   zlib1g-dev="$ZLIB1G_DEV_VERSION" \
-                   libpopt-dev="$LIBPOPT_DEV_VERSION" \
-                   libpq-dev="$LIBPQ_DEV_VERSION" \
-                   libssl-dev="$LIBSSL_DEV_VERSION" \
-                   libcurl4-openssl-dev="$LIBCURL4_OPENSSL_DEV_VERSION" \
-                   libxslt1-dev="$LIBXSLT1_DEV_VERSION" \
-                   libyaml-dev="$LIBYAML_DEV_VERSION" \
-                   libreadline6-dev="$LIBREADLINE6_DEV_VERSION" \
-                   libncurses5-dev="$LIBNCURSES5_DEV_VERSION" \
-                   libeditline-dev="$LIBEDITLINE_DEV_VERSION" \
-                   libedit-dev="$LIBEDIT_DEV_VERSION" || exit 7
+apt-get -y install build-essential \
+                   cmake \
+                   rake \
+                   unzip \
+                   curl \
+                   zlibc \
+                   bison \
+                   llvm \
+                   llvm-dev \
+                   zlib1g-dev \
+                   libpopt-dev \
+                   libpq-dev \
+                   libssl-dev \
+                   libcurl4-openssl-dev \
+                   libxslt1-dev \
+                   libyaml-dev \
+                   libreadline6-dev \
+                   libncurses5-dev \
+                   libeditline-dev \
+                   libedit-dev || exit 7
+
+# Test installed packages
+echo "*** Testing installed base packages"
+test_package build-essential
+test_package cmake
+test_package rake
+test_package unzip
+test_package curl
+test_package zlibc
+test_package bison
+test_package llvm
+test_package llvm-dev
+test_package zlib1g-dev
+test_package libpq-dev
+test_package libpopt-dev
+test_package libssl-dev
+test_package libcurl4-openssl-dev
+test_package libxslt1-dev
+test_package libyaml-dev
+test_package libreadline6-dev
+test_package libeditline-dev
+test_package libedit-dev
+
+# Test installed commands
+echo "*** Testing installed base commands"
+test_command make
+test_command cmake
+test_command rake
+test_command openssl version
+test_command unzip
+test_command curl

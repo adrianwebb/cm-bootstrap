@@ -41,3 +41,7 @@ else
   echo "*** Installing latest release of CM"
   bash -l -c "gem install cm -v '$GEM_CM_VERSION'" || exit 102
 fi
+
+# Test installed commands
+echo "*** Testing installed cm commands"
+test_command cm

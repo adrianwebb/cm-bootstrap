@@ -3,7 +3,15 @@
 
 # Install Git.
 echo "*** Ensuring Git"
-apt-get -y install git="$GIT_VERSION" || exit 10
+apt-get -y install git || exit 10
+
+# Test installed packages
+echo "*** Testing installed git packages"
+test_package git
+
+# Test installed commands
+echo "*** Testing installed git commands"
+test_command git
 
 # Make sure it is easy to communicate with repo hosts
 echo "*** Adding GitHub to root known hosts"

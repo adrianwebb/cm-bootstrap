@@ -33,7 +33,11 @@ function initialize_rvm_user()
 }
 
 echo "*** Ensuring Ruby development package"
-apt-get -y install ruby-dev="$RUBY_DEV_VERSION" || exit 50
+apt-get -y install ruby-dev || exit 50
+
+# Test installed packages
+echo "*** Testing installed ruby packages"
+test_package ruby-dev
 
 echo "*** Fetching RVM keys"
 gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3 || exit 51
@@ -67,6 +71,11 @@ echo "*** Installing Ruby version $RVM_RUBY_VERSION -- this might take some time
 
 bash -l -c "rvm install $RVM_RUBY_VERSION" || exit 55
 bash -l -c "rvm use $RVM_RUBY_VERSION --default" || exit 56
+
+# Test installed commands
+echo "*** Testing installed ruby commands"
+test_command ruby
+test_command gem
 
 if [ ! -e "/root/.gemrc" ]
 then
